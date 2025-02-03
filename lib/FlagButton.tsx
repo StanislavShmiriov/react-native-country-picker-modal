@@ -7,7 +7,7 @@ import {
   ViewStyle,
   TextProps,
 } from 'react-native'
-import { CallingCode, CountryCode } from './types'
+import { CountryCode } from './types'
 import { Flag } from './Flag'
 import { useContext } from './CountryContext'
 import { CountryText } from './CountryText'
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
 type FlagWithSomethingProp = Pick<
   FlagButtonProps,
   | 'countryCode'
-  | 'callingCode'
   | 'withEmoji'
   | 'withCountryNameButton'
   | 'withCurrencyButton'
@@ -52,7 +51,6 @@ const FlagWithSomething = memo(
   ({
     allowFontScaling,
     countryCode,
-    callingCode,
     withEmoji,
     withCountryNameButton,
     withCurrencyButton,
@@ -65,8 +63,9 @@ const FlagWithSomething = memo(
     const [state, setState] = useState({
       countryName: '',
       currency: '',
+      callingCode: '',
     })
-    const { countryName, currency } = state
+    const { countryName, currency, callingCode } = state
     useEffect(() => {
       if (countryCode) {
         getCountryInfoAsync({ countryCode, translation })
@@ -119,7 +118,6 @@ export interface FlagButtonProps {
   withFlagButton?: boolean
   containerButtonStyle?: StyleProp<ViewStyle>
   countryCode?: CountryCode
-  callingCode?: CallingCode
   placeholder: string
   onOpen?(): void
 }
@@ -132,7 +130,6 @@ export const FlagButton = ({
   withCurrencyButton = false,
   withFlagButton = false,
   countryCode,
-  callingCode,
   containerButtonStyle,
   onOpen,
   placeholder,
@@ -151,7 +148,6 @@ export const FlagButton = ({
           {...{
             allowFontScaling,
             countryCode,
-            callingCode,
             withEmoji,
             withCountryNameButton,
             withCallingCodeButton,
