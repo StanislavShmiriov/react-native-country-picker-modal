@@ -10,7 +10,14 @@ import {
 } from 'react-native'
 import { CountryModal } from './CountryModal'
 import { HeaderModal } from './HeaderModal'
-import { CallingCode, Country, CountryCode, FlagType, Region, Subregion } from './types'
+import {
+  CallingCode,
+  Country,
+  CountryCode,
+  FlagType,
+  Region,
+  Subregion,
+} from './types'
 import { CountryFilter, CountryFilterProps } from './CountryFilter'
 import { FlagButton } from './FlagButton'
 import { useContext } from './CountryContext'
@@ -232,6 +239,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
   const flagProp = {
     allowFontScaling,
     countryCode,
+    callingCode: state.callingCodePicker.callingCode,
     withEmoji,
     withCountryNameButton,
     withCallingCodeButton,

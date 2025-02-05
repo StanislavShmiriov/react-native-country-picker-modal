@@ -113,32 +113,32 @@ export const CallingCodePicker = (props: CallingCodePickerProps) => {
 
   return (
     <Pressable style={[styles.container, style && style.container]} onPress={closeOnOutside}>
-      <View style={[styles.modal, style && style.modal]}>
-        <View style={[styles.titleContainer, style && style.titleContainer]}>
-          <Text
-            numberOfLines={2}
-            ellipsizeMode='tail'
-            style={[styles.title, { fontFamily }, style && style.titleText]}
-          >
-            {parsedTitle}
-          </Text>
-        </View>
-        {country.callingCode.map(code => (
-          <View
-            style={[styles.codeContainer, style && style.codeContainer]}
-            key={code}
-          >
-            <TouchableOpacity
-              style={[styles.codeButton]}
-              onPress={() => handlePress(code)}
+        <View style={[styles.modal, style && style.modal]}>
+          <View style={[styles.titleContainer, style && style.titleContainer]}>
+            <Text
+              numberOfLines={2}
+              ellipsizeMode='tail'
+              style={[styles.title, { fontFamily }, style && style.titleText]}
             >
-              <Text style={[styles.codeText, style && style.codeText]}>
-                +{code}
-              </Text>
-            </TouchableOpacity>
+              {parsedTitle}
+            </Text>
           </View>
-        ))}
-      </View>
+          {country.callingCode.map(code => (
+            <View
+              style={[styles.codeContainer, style && style.codeContainer]}
+              key={code}
+            >
+              <TouchableOpacity
+                style={[styles.codeButton]}
+                onPress={() => handlePress(code)}
+              >
+                <Text style={[styles.codeText, style && style.codeText]}>
+                  +{code}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
     </Pressable>
   )
 }
