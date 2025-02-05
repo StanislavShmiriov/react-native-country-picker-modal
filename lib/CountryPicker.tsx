@@ -239,7 +239,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
   const flagProp = {
     allowFontScaling,
     countryCode,
-    callingCode: state.callingCodePicker.callingCode,
+    callingCode: state.callingCodePicker.callingCode || '61',
     withEmoji,
     withCountryNameButton,
     withCallingCodeButton,
@@ -250,6 +250,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
     containerButtonStyle,
     placeholder: placeholder || 'Select Country',
   }
+console.log('flagProp', flagProp);
 
   useEffect(() => {
     let cancel = false
