@@ -250,7 +250,6 @@ export const CountryPicker = (props: CountryPickerProps) => {
     containerButtonStyle,
     placeholder: placeholder || 'Select Country',
   }
-console.log('flagProp', flagProp);
 
   useEffect(() => {
     let cancel = false
