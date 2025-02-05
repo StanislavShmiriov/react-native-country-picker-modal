@@ -218,6 +218,15 @@ export const CountryPicker = (props: CountryPickerProps) => {
       },
     }))
   }
+  const closeOnOutside = ()=>{
+    setState(prevState => ({
+      ...prevState,
+      callingCodePicker: {
+        ...prevState.callingCodePicker,
+        visible: false,
+      },
+    }))
+  }
   const onFocus = () => setState({ ...state, filterFocus: true })
   const onBlur = () => setState({ ...state, filterFocus: false })
   const flagProp = {
@@ -269,6 +278,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
             translation={translation}
             style={callingCodePickerStyle}
             onSelect={handleCallingCodeSelect}
+            closeOnOutside={closeOnOutside}
           />
         )}
         <HeaderModal

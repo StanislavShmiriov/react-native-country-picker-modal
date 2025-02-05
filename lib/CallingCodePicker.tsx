@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import {
+  Pressable,
   StyleProp,
   StyleSheet,
   Text,
@@ -64,10 +65,11 @@ interface CallingCodePickerProps {
     codeText?: StyleProp<TextStyle>
   }
   onSelect?(country: Country): void
+  closeOnOutside?(): void
 }
 
 export const CallingCodePicker = (props: CallingCodePickerProps) => {
-  const { title, country, translation, style, onSelect } = props
+  const { title, country, translation, style, onSelect, closeOnOutside } = props
   const { fontFamily } = useTheme()
 
   const handlePress = useCallback(
@@ -110,35 +112,33 @@ export const CallingCodePicker = (props: CallingCodePickerProps) => {
   }
 
   return (
-    <>
-      <View style={[styles.container, style && style.container]}>
-        <View style={[styles.modal, style && style.modal]}>
-          <View style={[styles.titleContainer, style && style.titleContainer]}>
-            <Text
-              numberOfLines={2}
-              ellipsizeMode='tail'
-              style={[styles.title, { fontFamily }, style && style.titleText]}
-            >
-              {parsedTitle}
-            </Text>
-          </View>
-          {country.callingCode.map(code => (
-            <View
-              style={[styles.codeContainer, style && style.codeContainer]}
-              key={code}
-            >
-              <TouchableOpacity
-                style={[styles.codeButton]}
-                onPress={() => handlePress(code)}
-              >
-                <Text style={[styles.codeText, style && style.codeText]}>
-                  +{code}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          ))}
+    <Pressable style={[styles.container, style && style.container]} onPress={closeOnOutside}>
+      <View style={[styles.modal, style && style.modal]}>
+        <View style={[styles.titleContainer, style && style.titleContainer]}>
+          <Text
+            numberOfLines={2}
+            ellipsizeMode='tail'
+            style={[styles.title, { fontFamily }, style && style.titleText]}
+          >
+            {parsedTitle}
+          </Text>
         </View>
+        {country.callingCode.map(code => (
+          <View
+            style={[styles.codeContainer, style && style.codeContainer]}
+            key={code}
+          >
+            <TouchableOpacity
+              style={[styles.codeButton]}
+              onPress={() => handlePress(code)}
+            >
+              <Text style={[styles.codeText, style && style.codeText]}>
+                +{code}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        ))}
       </View>
-    </>
+    </Pressable>
   )
 }
