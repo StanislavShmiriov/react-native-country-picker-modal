@@ -279,16 +279,15 @@ export const CountryPicker = (props: CountryPickerProps) => {
         onRequestClose={onClose}
         onDismiss={onClose}
       >
-        {state.callingCodePicker.visible && (
-          <CallingCodePicker
+       <CallingCodePicker
             title={callingCodePickerTitle}
             country={state.callingCodePicker.country}
             translation={translation}
             style={callingCodePickerStyle}
             onSelect={handleCallingCodeSelect}
             closeOnOutside={closeOnOutside}
+            visible={state.callingCodePicker.visible}
           />
-        )}
         <HeaderModal
           {...{
             withFilter,

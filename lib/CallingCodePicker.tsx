@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import {
+  Modal,
   StyleProp,
   StyleSheet,
   Text,
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
 })
 
 interface CallingCodePickerProps {
+  visible: boolean
   title?: string
   country?: Country
   translation?: TranslationLanguageCode
@@ -68,7 +70,7 @@ interface CallingCodePickerProps {
 }
 
 export const CallingCodePicker = (props: CallingCodePickerProps) => {
-  const { title, country, translation, style, onSelect, closeOnOutside } = props
+  const { visible, title, country, translation, style, onSelect, closeOnOutside } = props
   const { fontFamily } = useTheme()
 
   const handlePress = useCallback(
@@ -111,7 +113,8 @@ export const CallingCodePicker = (props: CallingCodePickerProps) => {
   }
 
   return (
-    <TouchableOpacity activeOpacity={1} style={[styles.container, style && style.container]} onPress={closeOnOutside}>
+    <Modal transparent={true} onRequestClose={closeOnOutside} visible={visible}>
+      <TouchableOpacity activeOpacity={1} style={[styles.container, style && style.container]} onPress={closeOnOutside}>
         <View style={[styles.modal, style && style.modal]}>
           <View style={[styles.titleContainer, style && style.titleContainer]}>
             <Text
@@ -138,6 +141,7 @@ export const CallingCodePicker = (props: CallingCodePickerProps) => {
             </View>
           ))}
         </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </Modal>
   )
 }
