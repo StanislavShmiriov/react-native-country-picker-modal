@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
 import {
-  Pressable,
   StyleProp,
   StyleSheet,
   Text,
@@ -112,7 +111,7 @@ export const CallingCodePicker = (props: CallingCodePickerProps) => {
   }
 
   return (
-    <Pressable style={[styles.container, style && style.container]} onPress={closeOnOutside}>
+    <TouchableOpacity activeOpacity={1} style={[styles.container, style && style.container]} onPress={closeOnOutside}>
         <View style={[styles.modal, style && style.modal]}>
           <View style={[styles.titleContainer, style && style.titleContainer]}>
             <Text
@@ -139,6 +138,6 @@ export const CallingCodePicker = (props: CallingCodePickerProps) => {
             </View>
           ))}
         </View>
-    </Pressable>
+    </TouchableOpacity>
   )
 }
